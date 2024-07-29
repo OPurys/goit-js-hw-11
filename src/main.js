@@ -16,11 +16,12 @@ formEl.addEventListener('submit', handleSearch);
 function handleSearch(event) {
   event.preventDefault();
 
+  galleryEl.innerHTML = '';
+
   const form = event.currentTarget;
   const inputValue = form.elements.query.value.trim();
 
   if (inputValue === '') {
-    galleryEl.innerHTML = '';
     return;
   }
 
@@ -29,7 +30,6 @@ function handleSearch(event) {
   searchImage(inputValue)
     .then(data => {
       if (!data.hits.length) {
-        galleryEl.innerHTML = '';
         iziToast.error({
           message:
             'Sorry, there are no images matching your search query. Please try again!',
